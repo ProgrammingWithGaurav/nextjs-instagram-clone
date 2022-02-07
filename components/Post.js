@@ -3,8 +3,8 @@ import {
   ChatIcon,
   DotsHorizontalIcon,
   EmojiHappyIcon,
-  HeartIcon,
-  PaperAirplaneIcon
+  PaperAirplaneIcon,
+  HeartIcon
 } from '@heroicons/react/outline';
 import { HeartIcon as HeartIconFilled } from '@heroicons/react/solid';
 
