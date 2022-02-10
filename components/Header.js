@@ -9,15 +9,20 @@ import {
 import { HomeIcon } from "@heroicons/react/solid";
 import PlusCirleIcon from "@heroicons/react/outline/PlusCircleIcon";
 import {  signIn, signOut, useSession } from 'next-auth/react';
+import {useRouter} from 'next/router';
+import {useRecoilState} from 'recoil';
+import {modalState} from '../atoms/modalAtom';
 
 function Header() {
     const { data: session } = useSession();
-    console.log(session)
+    const [open, setOpen] = useRecoilState(modalState);
+    
+    const router = useRouter();
     return (
             <div className='shadow-sm border-b bg-white top-0 z-50'>
                 <div className="flex max-w-6xl justify-between mx-5 lg:mx-auto">
                     {/* Left Logo */}
-                    <div className="relative hidden w-24 cursor-pointer lg:inline">
+                    <div onClick={() => router.push('/')} className="relative hidden w-24 cursor-pointer lg:inline">
                         <Image
                             src="https://links.papareact.com/ocw"
                             layout="fill"
@@ -25,7 +30,7 @@ function Header() {
                             alt=""
                         />
                     </div>
-                    <div className="relative w-10 flex-shrink-0 cursor-pointer lg:hidden">
+                    <div onClick={() => router.push('/')} className="relative w-10 flex-shrink-0 cursor-pointer lg:hidden">
                         <Image
                             src="https://links.papareact.com/jjm"
                             layout="fill"
@@ -53,14 +58,14 @@ function Header() {
                         session ? (
                             <>
                                 <div className='flex items-center justify-end space-x-4'>
-                                    <HomeIcon className='navBtn' />
+                                    <HomeIcon onClick={() => router.push('/')} className='navBtn' />
                                     <MenuIcon className='h-6 md:hidden cursor-pointer w-10' />
 
                                     <div className='relative navBtn'>
                                         <PaperAirplaneIcon className='navBtn rotate-45' />
                                         <div className="absolute -top-1 -right-2 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white text-xs w-5 h-5">3</div>
                                     </div>
-                                    <PlusCirleIcon className='navBtn' />
+                                    <PlusCirleIcon onClick={() => setOpen(true)} className='navBtn' />
                                     <UserGroupIcon className='navBtn' />
                                     <HeartIcon className='navBtn' />
 
@@ -68,7 +73,10 @@ function Header() {
                                 </div>
                             </>
                         ) : (
+                            <div className='flex items-center justify-end space-x-4'>
+                            <HomeIcon onClick={() => router.push('/')} className='navBtn' />
                             <button onClick={signIn}>Sigin In</button>
+                            </div>
                         )
                     }
                 </div>
