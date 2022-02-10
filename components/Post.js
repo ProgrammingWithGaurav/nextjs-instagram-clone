@@ -117,7 +117,7 @@ function Post({ id, username, userImg, img, caption }) {
                 alt=""
                 className="h-7 rounded-full"
               />
-              <p className="text-sm flex-1"><span className="font-bold">{comment.username} </span>{comment.comment}</p>
+              <p className="text-sm flex-1"><span className="font-bold">{comment.username}{' '}</span>{comment.comment}</p>
               <Moment fromNow className="text-sm pr-5">
                 {comment.timestamp?.toDate()}
               </Moment>
