@@ -19,7 +19,7 @@ function Header() {
     
     const router = useRouter();
     return (
-            <div className='shadow-sm border-b bg-white top-0 z-50'>
+            <div className='shadow-sm border-b fixed w-full bg-white top-0 z-50'>
                 <div className="flex max-w-6xl justify-between mx-5 lg:mx-auto">
                     {/* Left Logo */}
                     <div onClick={() => router.push('/')} className="relative hidden w-24 cursor-pointer lg:inline">
